@@ -1,6 +1,6 @@
 package com.global.filter;
 
-import com.config.util.JwtTokenUtil;
+import com.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

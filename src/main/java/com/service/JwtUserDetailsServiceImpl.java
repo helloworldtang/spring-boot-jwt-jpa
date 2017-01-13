@@ -4,6 +4,7 @@ import com.dao.UserRepository;
 import com.domain.security.User;
 import com.util.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,4 +29,6 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
             return JwtUserFactory.create(user);
         }
     }
+
+
 }

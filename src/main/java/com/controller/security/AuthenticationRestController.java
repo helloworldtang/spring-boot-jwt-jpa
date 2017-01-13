@@ -1,6 +1,6 @@
 package com.controller.security;
 
-import com.config.util.JwtTokenUtil;
+import com.util.JwtTokenUtil;
 import com.domain.security.JwtUser;
 import com.request.JwtAuthenticationRequest;
 import com.response.JwtAuthenticationResponse;
@@ -39,6 +39,13 @@ public class AuthenticationRestController {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @RequestMapping(value = "${jwt.route.authentication.init}", method = RequestMethod.POST)
+    public ResponseEntity<?> init(JwtAuthenticationRequest authenticationRequest) {
+        //todo 如果没有管理帐户，可以创建一个
+        return ResponseEntity.ok("success");
+    }
+
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {

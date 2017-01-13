@@ -4,12 +4,16 @@ jwt:
   expiration: 604800
   route:
     authentication:
+      init: init
       path: auth
       refresh: refresh
 
 spring:
      datasource:
-              url: jdbc:mysql://127.0.0.1:3306/test_sec?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+              url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
               username: root
-              password: root
+              password:
+logging:
+  file: selectdata.log
+  level: info
 

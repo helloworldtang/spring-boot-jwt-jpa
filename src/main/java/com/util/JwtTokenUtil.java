@@ -1,4 +1,4 @@
-package com.config.util;
+package com.util;
 
 import com.domain.security.JwtUser;
 import io.jsonwebtoken.Claims;

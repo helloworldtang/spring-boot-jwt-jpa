@@ -1,6 +1,6 @@
 package com.config;
 
-import com.config.util.JwtAuthenticationEntryPoint;
+import com.util.JwtAuthenticationEntryPoint;
 import com.global.filter.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
