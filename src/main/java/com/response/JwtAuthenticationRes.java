@@ -2,11 +2,11 @@ package com.response;
 
 import java.io.Serializable;
 
-public class JwtAuthenticationResponse implements Serializable {
+public class JwtAuthenticationRes implements Serializable {
 
     private final String token;
 
-    public JwtAuthenticationResponse(String token) {
+    public JwtAuthenticationRes(String token) {
         this.token = token;
     }
 

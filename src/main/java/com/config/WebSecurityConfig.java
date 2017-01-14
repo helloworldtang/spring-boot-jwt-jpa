@@ -32,6 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${jwt.route.authentication.path}")
     private String authPath;
 
+    @Value("${jwt.route.authentication.init}")
+    private String init;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -65,7 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                .antMatchers("/" + authPath + "/**").permitAll()
+                .antMatchers("/" + authPath + "/**",
+                        "/" + init + "/**").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filterF

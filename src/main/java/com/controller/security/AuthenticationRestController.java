@@ -1,9 +1,11 @@
 package com.controller.security;
 
-import com.util.JwtTokenUtil;
 import com.domain.security.JwtUser;
-import com.request.JwtAuthenticationRequest;
-import com.response.JwtAuthenticationResponse;
+import com.request.JwtAuthenticationReq;
+import com.request.UserReq;
+import com.response.JwtAuthenticationRes;
+import com.service.UserManagerService;
+import com.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 public class AuthenticationRestController {
@@ -38,17 +41,23 @@ public class AuthenticationRestController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
+    private UserManagerService userManagerService;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @RequestMapping(value = "${jwt.route.authentication.init}", method = RequestMethod.POST)
-    public ResponseEntity<?> init(JwtAuthenticationRequest authenticationRequest) {
-        //todo 如果没有管理帐户，可以创建一个
+    public ResponseEntity<?> init(@Valid UserReq req) {
+        if (userManagerService.hasAdminAccount()) {
+            return ResponseEntity.badRequest().body("already init!");
+        }
+        userManagerService.addAdminAccount(req);
         return ResponseEntity.ok("success");
     }
 
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
+    public ResponseEntity<?> createAuthenticationToken(JwtAuthenticationReq authenticationRequest, Device device) throws AuthenticationException {
 
         // Perform the security
         String username = authenticationRequest.getUsername();
@@ -65,7 +74,7 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         LOGGER.info("username:{},token:{}", username, token);
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(new JwtAuthenticationRes(token));
     }
 
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
@@ -76,7 +85,7 @@ public class AuthenticationRestController {
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);
-            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+            return ResponseEntity.ok(new JwtAuthenticationRes(refreshedToken));
         } else {
             return ResponseEntity.badRequest().body(null);
         }

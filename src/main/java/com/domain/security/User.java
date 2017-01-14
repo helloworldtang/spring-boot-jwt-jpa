@@ -12,8 +12,7 @@ public class User {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "USERNAME", length = 50, unique = true)
@@ -21,7 +20,7 @@ public class User {
     @Size(min = 4, max = 50)
     private String username;
 
-    @Column(name = "PASSWORD", length = 100)
+    @Column(name = "PASSWORD", length = 80)
     @NotNull
     @Size(min = 4, max = 100)
     private String password;
@@ -29,12 +28,12 @@ public class User {
     @Column(name = "FIRSTNAME", length = 50)
     @NotNull
     @Size(min = 4, max = 50)
-    private String firstname;
+    private String firstName;
 
     @Column(name = "LASTNAME", length = 50)
     @NotNull
     @Size(min = 4, max = 50)
-    private String lastname;
+    private String lastName;
 
     @Column(name = "EMAIL", length = 50)
     @NotNull
@@ -81,20 +80,20 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
