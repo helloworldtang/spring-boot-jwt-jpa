@@ -19,8 +19,6 @@ import java.util.Map;
 @Component
 @ConfigurationProperties(prefix = "jwt")
 public class JwtTokenUtil implements Serializable {
-
-    private static final long serialVersionUID = -3301605591108950415L;
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
 
     static final String CLAIM_KEY_USERNAME = "sub";

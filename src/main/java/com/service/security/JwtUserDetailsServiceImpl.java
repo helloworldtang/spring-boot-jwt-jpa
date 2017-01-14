@@ -1,10 +1,9 @@
-package com.service;
+package com.service.security;
 
-import com.dao.UserRepository;
+import com.repository.UserRepository;
 import com.domain.security.User;
 import com.util.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

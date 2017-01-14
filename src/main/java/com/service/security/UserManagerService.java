@@ -1,7 +1,7 @@
-package com.service;
+package com.service.security;
 
-import com.dao.UserAuthorityRepository;
-import com.dao.UserRepository;
+import com.repository.UserAuthorityRepository;
+import com.repository.UserRepository;
 import com.domain.security.Role;
 import com.domain.security.User;
 import com.domain.security.UserAuthority;

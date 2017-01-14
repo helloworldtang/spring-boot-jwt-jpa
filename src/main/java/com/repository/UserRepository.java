@@ -1,4 +1,4 @@
-package com.dao;
+package com.repository;
 
 
 import com.domain.security.User;

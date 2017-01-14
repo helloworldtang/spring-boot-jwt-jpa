@@ -1,6 +1,6 @@
 jwt:
   header: Authorization
-  secret: mySecret
+  secret: selectData
   expiration: 604800
   route:
     authentication:
@@ -12,7 +12,9 @@ spring:
      datasource:
               url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
               username: root
-              password:
+              password: root
+     jpa:
+       show-sql: true
 logging:
   file: selectdata.log
   level: info

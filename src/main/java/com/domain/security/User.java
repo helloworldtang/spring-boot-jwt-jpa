@@ -25,12 +25,12 @@ public class User {
     @Size(min = 4, max = 100)
     private String password;
 
-    @Column(name = "FIRSTNAME", length = 50)
+    @Column(name = "FIRST_NAME", length = 50)
     @NotNull
     @Size(min = 4, max = 50)
     private String firstName;
 
-    @Column(name = "LASTNAME", length = 50)
+    @Column(name = "LAST_NAME", length = 50)
     @NotNull
     @Size(min = 4, max = 50)
     private String lastName;
@@ -44,7 +44,7 @@ public class User {
     @NotNull
     private Boolean enabled;
 
-    @Column(name = "LASTPASSWORDRESETDATE")
+    @Column(name = "LAST_PASSWORD_RESET_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     private Date lastPasswordResetDate;
