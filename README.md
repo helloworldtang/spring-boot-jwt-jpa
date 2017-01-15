@@ -1,9 +1,6 @@
 
-第一次运行时，需要初始化admin密码
-post 127.0.0.1:8080/init
-以下参数必须：
-username
-password
-email
-lastName
-firstName
+获取token的接口(查找status=0的记录，按created_time desc)：
+127.0.0.1:8080/auth?username=admin&password=admin
+数据展示接口：
+127.0.0.1:8080/daily/news?page=0&size=2
+Header parameter name: token
