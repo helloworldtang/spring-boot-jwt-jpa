@@ -1,4 +1,4 @@
-package com.request;
+package com.domain.request;
 
 import java.io.Serializable;
 

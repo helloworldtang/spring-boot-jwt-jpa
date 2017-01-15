@@ -1,4 +1,4 @@
-package com.response;
+package com.domain.response;
 
 import java.io.Serializable;
 

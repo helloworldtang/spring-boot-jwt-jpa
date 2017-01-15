@@ -1,9 +1,9 @@
 package com.controller.security;
 
 import com.domain.security.JwtUser;
-import com.request.JwtAuthenticationReq;
-import com.request.UserReq;
-import com.response.security.JwtAuthenticationRes;
+import com.domain.request.JwtAuthenticationReq;
+import com.domain.request.UserReq;
+import com.domain.response.security.JwtAuthenticationRes;
 import com.service.security.UserManagerService;
 import com.util.JwtTokenUtil;
 import org.slf4j.Logger;

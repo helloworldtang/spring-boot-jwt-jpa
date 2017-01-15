@@ -1,8 +1,8 @@
 package com.controller.news;
 
 import com.domain.ListData;
-import com.request.PageReq;
-import com.response.DailyNewsRes;
+import com.domain.request.PageReq;
+import com.domain.response.DailyNewsRes;
 import com.service.DailyNewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

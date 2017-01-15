@@ -1,4 +1,4 @@
-package com.request;
+package com.domain.request;
 
 /**
  * Created by tang.cheng on 2017/1/14.

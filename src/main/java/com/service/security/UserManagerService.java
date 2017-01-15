@@ -5,7 +5,7 @@ import com.repository.UserRepository;
 import com.domain.security.Role;
 import com.domain.security.User;
 import com.domain.security.UserAuthority;
-import com.request.UserReq;
+import com.domain.request.UserReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.response.security;
+package com.domain.response.security;
 
 import java.io.Serializable;
 
