@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -59,17 +58,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // allow anonymous resource requests
                 .antMatchers(
-                        HttpMethod.GET,
+//                        HttpMethod.GET,
                         "/favicon.ico",
                         "/**/*.html",
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers("/" + authPath + "/**",
-                        "/login/init").permitAll()
+                        "/login/init",
+                        "/swagger-ui.html").permitAll()
                 .anyRequest().authenticated();
 
-        // Custom JWT based security filterF
         /**
          * 每次请求过来时, 我们将获取请求的Authorization头部存有的jwt, 并提取相应的信息,
          * 如果当前security的上下文还没有认证对应的用户信息并且token是有效的,
