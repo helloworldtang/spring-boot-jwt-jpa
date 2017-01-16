@@ -1,7 +1,7 @@
 package com.config;
 
-import com.util.JwtAuthenticationEntryPoint;
 import com.global.filter.JwtAuthenticationTokenFilter;
+import com.util.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -31,9 +31,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${jwt.route.authentication.path}")
     private String authPath;
-
-    @Value("${jwt.route.authentication.init}")
-    private String init;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -69,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers("/" + authPath + "/**",
-                        "/" + init + "/**").permitAll()
+                        "/login/init").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filterF
