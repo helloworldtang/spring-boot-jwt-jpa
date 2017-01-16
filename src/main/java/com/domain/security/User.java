@@ -1,8 +1,10 @@
 package com.domain.security;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -17,27 +19,28 @@ public class User {
 
     @Column(name = "USERNAME", length = 50, unique = true)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Length(min = 4, max = 50)
     private String username;
 
     @Column(name = "PASSWORD", length = 80)
     @NotNull
-    @Size(min = 4, max = 100)
+    @Length(min = 4, max = 100)
     private String password;
 
     @Column(name = "FIRST_NAME", length = 50)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Length(min = 4, max = 50)
     private String firstName;
 
     @Column(name = "LAST_NAME", length = 50)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Length(min = 4, max = 50)
     private String lastName;
 
     @Column(name = "EMAIL", length = 50)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Length(min = 4, max = 50)
+    @Email
     private String email;
 
     @Column(name = "ENABLED")

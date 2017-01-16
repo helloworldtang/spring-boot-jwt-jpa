@@ -1,10 +1,8 @@
 package com.controller.security;
 
-import com.domain.security.JwtUser;
 import com.domain.request.JwtAuthenticationReq;
-import com.domain.request.UserReq;
 import com.domain.response.security.JwtAuthenticationRes;
-import com.service.security.UserManagerService;
+import com.domain.security.JwtUser;
 import com.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 @RestController
-public class AuthenticationRestController {
+public class AuthenticationController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationRestController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
 
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -41,20 +38,7 @@ public class AuthenticationRestController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserManagerService userManagerService;
-
-    @Autowired
     private UserDetailsService userDetailsService;
-
-    @RequestMapping(value = "${jwt.route.authentication.init}", method = RequestMethod.POST)
-    public ResponseEntity<?> init(@Valid UserReq req) {
-        if (userManagerService.hasAdminAccount()) {
-            return ResponseEntity.badRequest().body("already init!");
-        }
-        userManagerService.addAdminAccount(req);
-        return ResponseEntity.ok("success");
-    }
-
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(JwtAuthenticationReq authenticationRequest, Device device) throws AuthenticationException {

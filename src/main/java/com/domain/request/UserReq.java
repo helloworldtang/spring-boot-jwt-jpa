@@ -1,5 +1,6 @@
 package com.domain.request;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -12,6 +13,7 @@ public class UserReq {
     private String password;
     private String firstName;
     private String lastName;
+    @Email //被注释的元素必须是电子邮箱地址
     private String email;
 
     public String getUsername() {

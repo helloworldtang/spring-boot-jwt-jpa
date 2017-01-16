@@ -1,5 +1,6 @@
 package com.service.security;
 
+import com.domain.request.FullUserReq;
 import com.repository.UserAuthorityRepository;
 import com.repository.UserRepository;
 import com.domain.security.Role;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Created by tang.cheng on 2017/1/14.
@@ -41,7 +43,7 @@ public class UserManagerService {
         return count > 0;
     }
 
-    public void addAdminAccount(UserReq req) {
+    public void create(UserReq req, Number authorityId) {
         User user = new User();
         user.setUsername(req.getUsername());
         String encodePwd = passwordEncoder.encode(req.getPassword());
@@ -56,7 +58,25 @@ public class UserManagerService {
 
         UserAuthority authority = new UserAuthority();
         authority.setUserId(user.getId());
-        authority.setAuthorityId(Role.ADMIN.getId());
+        authority.setAuthorityId((Long) authorityId);
         userAuthorityRepository.save(authority);
+    }
+
+    public void create(FullUserReq fullUserReq) {
+        create(fullUserReq, fullUserReq.getRole());
+    }
+
+    public void manager(String username, Boolean status) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            LOGGER.warn("{} not exists", username);
+            return;
+        }
+        if (Objects.equals(status, user.getEnabled())) {
+            LOGGER.warn("{}, no changes.Nothing to do ", username);
+            return;
+        }
+        user.setEnabled(status);
+        userRepository.saveAndFlush(user);
     }
 }
