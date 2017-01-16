@@ -1,6 +1,6 @@
 package com.util;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * 邀请码生成器，算法原理：<br/>
@@ -55,9 +55,8 @@ public class ShareCodeUtil {
         if (code.length() < s) {
             StringBuilder sb = new StringBuilder();
             sb.append(b);
-            Random rnd = new Random();
             for (int i = 1; i < s - code.length(); i++) {
-                sb.append(r[rnd.nextInt(binLen)]);
+                sb.append(r[ThreadLocalRandom.current().nextInt(binLen)]);
             }
             code += sb.toString();
         }
