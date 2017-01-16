@@ -31,19 +31,21 @@ public class UserManagerService {
     private PasswordEncoder passwordEncoder;
 
     /**
-     * 每一个创建的一定是管理员
+     * 第一个创建的一定是管理员
      *
      * @return
      */
     public boolean hasAdminAccount() {
-        return userAuthorityRepository.count() > 0;
+        Long count = userAuthorityRepository.countByAuthorityId(Role.ADMIN.getId());
+        LOGGER.info("admin count:{}", count);
+        return count > 0;
     }
 
     public void addAdminAccount(UserReq req) {
         User user = new User();
         user.setUsername(req.getUsername());
         String encodePwd = passwordEncoder.encode(req.getPassword());
-        LOGGER.info("{}",encodePwd);
+        LOGGER.info("{}", encodePwd);
         user.setPassword(encodePwd);
         user.setFirstName(req.getFirstName());
         user.setLastName(req.getLastName());

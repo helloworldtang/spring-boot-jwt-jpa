@@ -18,8 +18,8 @@ CREATE TABLE `tb_authority` (
   `NAME` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT INTO `tb_authority` (ID, NAME) VALUES (1, 'ROLE_USER');
-INSERT INTO `tb_authority` (ID, NAME) VALUES (2, 'ROLE_ADMIN');
+INSERT INTO `tb_authority` (ID, NAME) VALUES (1, 'ROLE_ADMIN');
+INSERT INTO `tb_authority` (ID, NAME) VALUES (2, 'ROLE_USER');
 
 drop TABLE if EXISTS tb_user_authority;
 CREATE TABLE `tb_user_authority` (
@@ -28,6 +28,8 @@ CREATE TABLE `tb_user_authority` (
   `AUTHORITY_ID` bigint(20) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO tb_user_authority (USER_ID, AUTHORITY_ID) VALUES (1, 2);
+
 
 drop TABLE if EXISTS tb_daily_news;
 create table tb_daily_news(

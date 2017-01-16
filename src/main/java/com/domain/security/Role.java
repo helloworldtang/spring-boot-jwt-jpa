@@ -4,8 +4,8 @@ package com.domain.security;
  * Created by tang.cheng on 2017/1/14.
  */
 public enum Role {
-    USER(1L, "USER", "ROLE_USER"),
-    ADMIN(2L, "ADMIN", "ROLE_ADMIN");
+    ADMIN(1L, "ADMIN", "ROLE_ADMIN"),
+    USER(2L, "USER", "ROLE_USER");
 
     private Long id;
     private String shortName;
