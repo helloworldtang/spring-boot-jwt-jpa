@@ -2,7 +2,7 @@ package com.controller.security;
 
 import com.domain.request.FullUserReq;
 import com.domain.request.UserReq;
-import com.domain.security.Role;
+import com.domain.security.SysRole;
 import com.service.security.UserManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +22,9 @@ public class UserController {
     @RequestMapping(value = "/login/init", method = RequestMethod.POST)
     public ResponseEntity<?> init(@Valid @ModelAttribute UserReq req) {
         if (userManagerService.hasAdminAccount()) {
-            return ResponseEntity.badRequest().body("already init!");
+            return ResponseEntity.badRequest().body("Has been done!nothing to do.");
         }
-        userManagerService.create(req, Role.ADMIN.getId());
+        userManagerService.create(req, SysRole.ROLE_ADMIN.getId());
         return ResponseEntity.ok("success");
     }
 

@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "tb_user")
-public class User {
+@Table(name = "tb_sys_user")
+public class SysUser {
 
     @Id
     @Column(name = "ID")
@@ -54,10 +54,10 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
-    private List<Authority> authorities;
+            name = "tb_sys_user_authority",
+            joinColumns = {@JoinColumn(name = "SYS_USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "SYS_AUTHORITY_ID", referencedColumnName = "ID")})
+    private List<SysAuthority> sysAuthorities;
 
     public Long getId() {
         return id;
@@ -115,12 +115,12 @@ public class User {
         this.enabled = enabled;
     }
 
-    public List<Authority> getAuthorities() {
-        return authorities;
+    public List<SysAuthority> getSysAuthorities() {
+        return sysAuthorities;
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    public void setSysAuthorities(List<SysAuthority> sysAuthorities) {
+        this.sysAuthorities = sysAuthorities;
     }
 
     public Date getLastPasswordResetDate() {

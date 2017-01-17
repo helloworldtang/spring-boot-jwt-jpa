@@ -1,11 +1,11 @@
 package com.service.security;
 
 import com.domain.request.FullUserReq;
+import com.domain.security.SysUser;
 import com.repository.UserAuthorityRepository;
 import com.repository.UserRepository;
-import com.domain.security.Role;
-import com.domain.security.User;
-import com.domain.security.UserAuthority;
+import com.domain.security.SysRole;
+import com.domain.security.SysUserAuthority;
 import com.domain.request.UserReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,27 +38,27 @@ public class UserManagerService {
      * @return
      */
     public boolean hasAdminAccount() {
-        Long count = userAuthorityRepository.countByAuthorityId(Role.ADMIN.getId());
+        Long count = userAuthorityRepository.countBySysAuthorityId(SysRole.ROLE_ADMIN.getId());
         LOGGER.info("admin count:{}", count);
         return count > 0;
     }
 
     public void create(UserReq req, Number authorityId) {
-        User user = new User();
-        user.setUsername(req.getUsername());
+        SysUser sysUser = new SysUser();
+        sysUser.setUsername(req.getUsername());
         String encodePwd = passwordEncoder.encode(req.getPassword());
         LOGGER.info("{}", encodePwd);
-        user.setPassword(encodePwd);
-        user.setFirstName(req.getFirstName());
-        user.setLastName(req.getLastName());
-        user.setEmail(req.getEmail());
-        user.setEnabled(true);
-        user.setLastPasswordResetDate(new Date());
-        userRepository.save(user);
+        sysUser.setPassword(encodePwd);
+        sysUser.setFirstName(req.getFirstName());
+        sysUser.setLastName(req.getLastName());
+        sysUser.setEmail(req.getEmail());
+        sysUser.setEnabled(true);
+        sysUser.setLastPasswordResetDate(new Date());
+        userRepository.save(sysUser);
 
-        UserAuthority authority = new UserAuthority();
-        authority.setUserId(user.getId());
-        authority.setAuthorityId((Long) authorityId);
+        SysUserAuthority authority = new SysUserAuthority();
+        authority.setSysUserId(sysUser.getId());
+        authority.setSysAuthorityId((Long) authorityId);
         userAuthorityRepository.save(authority);
     }
 
@@ -67,16 +67,16 @@ public class UserManagerService {
     }
 
     public void manager(String username, Boolean status) {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
+        SysUser sysUser = userRepository.findByUsername(username);
+        if (sysUser == null) {
             LOGGER.warn("{} not exists", username);
             return;
         }
-        if (Objects.equals(status, user.getEnabled())) {
+        if (Objects.equals(status, sysUser.getEnabled())) {
             LOGGER.warn("{}, no changes.Nothing to do ", username);
             return;
         }
-        user.setEnabled(status);
-        userRepository.saveAndFlush(user);
+        sysUser.setEnabled(status);
+        userRepository.saveAndFlush(sysUser);
     }
 }
