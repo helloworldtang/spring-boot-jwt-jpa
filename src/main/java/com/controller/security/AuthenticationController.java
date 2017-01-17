@@ -2,7 +2,7 @@ package com.controller.security;
 
 import com.domain.request.JwtAuthenticationReq;
 import com.domain.response.security.JwtAuthenticationRes;
-import com.domain.security.JwtUser;
+import com.domain.security.JwtSysUser;
 import com.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +67,7 @@ public class AuthenticationController {
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+        JwtSysUser user = (JwtSysUser) userDetailsService.loadUserByUsername(username);
 
         if (jwtTokenUtil.canTokenBeRefreshed(token, user.getLastPasswordResetDate())) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);

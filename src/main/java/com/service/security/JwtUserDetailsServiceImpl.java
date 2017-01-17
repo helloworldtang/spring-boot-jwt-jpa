@@ -1,8 +1,8 @@
 package com.service.security;
 
+import com.domain.security.JwtSysUser;
+import com.domain.security.SysUser;
 import com.repository.UserRepository;
-import com.domain.security.User;
-import com.util.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,12 +20,12 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        SysUser sysUser = userRepository.findByUsername(username);
 
-        if (user == null) {
+        if (sysUser == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-            return JwtUserFactory.create(user);
+            return new JwtSysUser(sysUser);
         }
     }
 

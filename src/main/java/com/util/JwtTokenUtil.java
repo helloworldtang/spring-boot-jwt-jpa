@@ -1,6 +1,6 @@
 package com.util;
 
-import com.domain.security.JwtUser;
+import com.domain.security.JwtSysUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -174,7 +174,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        JwtUser user = (JwtUser) userDetails;
+        JwtSysUser user = (JwtSysUser) userDetails;
         final String username = getUsernameFromToken(token);
         final Date created = getCreatedDateFromToken(token);
         //final Date expiration = getExpirationDateFromToken(token);
