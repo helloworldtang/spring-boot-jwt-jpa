@@ -20,7 +20,7 @@ public class UserController {
     private UserManagerService userManagerService;
 
     @RequestMapping(value = "/login/init", method = RequestMethod.POST)
-    public ResponseEntity<?> init(@Valid @ModelAttribute UserReq req) {
+    public ResponseEntity<String> init(@Valid @ModelAttribute UserReq req) {
         if (userManagerService.hasAdminAccount()) {
             return ResponseEntity.badRequest().body("Has been done!nothing to do.");
         }
@@ -31,14 +31,14 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/login/user", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@Valid @ModelAttribute FullUserReq fullUserReq) {
+    public ResponseEntity<String> createUser(@Valid @ModelAttribute FullUserReq fullUserReq) {
         userManagerService.create(fullUserReq);
         return ResponseEntity.ok("success");
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/login/user", method = RequestMethod.PUT)
-    public ResponseEntity<?> managerUser(@RequestParam(name = "username") String username, @RequestParam("status") Boolean status) {
+    public ResponseEntity<String> managerUser(@RequestParam(name = "username") String username, @RequestParam("status") Boolean status) {
         userManagerService.manager(username,status);
         return ResponseEntity.ok("success");
     }

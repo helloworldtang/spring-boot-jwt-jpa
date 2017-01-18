@@ -43,7 +43,7 @@ public class AuthenticationController {
     private UserDetailsService userDetailsService;
 
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@Valid @ModelAttribute JwtAuthenticationReq authenticationRequest, Device device) throws AuthenticationException {
+    public ResponseEntity<JwtAuthenticationRes> createAuthenticationToken(@Valid @ModelAttribute JwtAuthenticationReq authenticationRequest, Device device) throws AuthenticationException {
 
         // Perform the security
         String username = authenticationRequest.getUsername();
@@ -64,7 +64,7 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
-    public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
+    public ResponseEntity<JwtAuthenticationRes> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtSysUser user = (JwtSysUser) userDetailsService.loadUserByUsername(username);

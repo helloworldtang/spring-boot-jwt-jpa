@@ -17,7 +17,7 @@ public class DailyNewsController {
     private DailyNewsService dailyNewsService;
 
     @RequestMapping(value = "/daily/news", method = RequestMethod.GET)
-    public ResponseEntity<?> getDailyNews(PageReq pageReq) {
+    public ResponseEntity<ListData<DailyNewsRes>> getDailyNews(PageReq pageReq) {
         ListData<DailyNewsRes> dailyNews = dailyNewsService.getDailyNews(pageReq);
         return ResponseEntity.ok(dailyNews);
     }
