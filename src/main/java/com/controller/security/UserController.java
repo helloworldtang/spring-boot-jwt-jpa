@@ -30,14 +30,14 @@ public class UserController {
 
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(name = "/login/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/user", method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@Valid @ModelAttribute FullUserReq fullUserReq) {
         userManagerService.create(fullUserReq);
         return ResponseEntity.ok("success");
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(name = "/login/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/login/user", method = RequestMethod.PUT)
     public ResponseEntity<?> managerUser(@RequestParam(name = "username") String username, @RequestParam("status") Boolean status) {
         userManagerService.manager(username,status);
         return ResponseEntity.ok("success");
