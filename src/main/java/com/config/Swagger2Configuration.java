@@ -5,13 +5,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by tang.cheng on 2017/1/16.
@@ -48,6 +52,21 @@ public class Swagger2Configuration {
                 .apis(RequestHandlerSelectors.basePackage("com.web"))
                 .paths(PathSelectors.any())// .paths(Predicates.or(PathSelectors.regex("/api/.*")))//过滤的接口,此片过滤掉/api/打头的接口
                 .build()//The selector requires to be built after configuring the api and path selectors. Out of the box we provide predicates for regex, ant, any, none
+                .globalOperationParameters(
+                        newArrayList(new ParameterBuilder()
+                                .name("Authorization")
+                                .description("token")
+                                .modelRef(new ModelRef("string"))
+                                /**
+                                 * paramType(参数放在哪个地方):
+                                 header-->请求参数的获取：@RequestHeader
+                                 query-->请求参数的获取：@RequestParam
+                                 path（用于restful接口）-->请求参数的获取：@PathVariable
+                                 body（不常用）
+                                 form（不常用）
+                                 */
+                                .parameterType("header")
+                                .build()))
 //                .ignoredParameterTypes(Student.class)//swagger-ui.html中如果有返回值是Student时，就会显示 Response Class (Status 200) OK <span class="strong">Student is not defined!</span>
                 .genericModelSubstitutes(DeferredResult.class)//异步http请求
                 .forCodeGeneration(true)//By default, types with generics will be labeled with '\u00ab'(<<), '\u00bb'(>>), and commas. This can be problematic with things like swagger-codegen. You can override this behavior by implementing your own GenericTypeNamingStrategy.
