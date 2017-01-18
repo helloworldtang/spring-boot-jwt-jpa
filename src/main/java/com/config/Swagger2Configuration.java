@@ -1,8 +1,8 @@
 package com.config;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.context.request.async.DeferredResult;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -16,7 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * Created by tang.cheng on 2017/1/16.
  */
-@ConditionalOnProperty(name = "swagger.enabled", havingValue = "true")
+@Profile("dev")
 @Configuration
 @EnableSwagger2
 public class Swagger2Configuration {
