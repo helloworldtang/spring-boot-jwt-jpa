@@ -3,7 +3,7 @@ package com.service;
 import com.domain.ItemStatus;
 import com.domain.ListData;
 import com.domain.biz.DailyNews;
-import com.repository.DailyNewsRepository;
+import com.domain.biz.DailyNewsRepository;
 import com.domain.request.PageReq;
 import com.domain.response.DailyNewsRes;
 import org.springframework.beans.factory.annotation.Autowired;

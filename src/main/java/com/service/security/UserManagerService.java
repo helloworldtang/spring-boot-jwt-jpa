@@ -2,8 +2,8 @@ package com.service.security;
 
 import com.domain.request.FullUserReq;
 import com.domain.security.SysUser;
-import com.repository.UserAuthorityRepository;
-import com.repository.UserRepository;
+import com.domain.security.UserAuthorityRepository;
+import com.domain.security.UserRepository;
 import com.domain.security.SysRole;
 import com.domain.security.SysUserAuthority;
 import com.domain.request.UserReq;

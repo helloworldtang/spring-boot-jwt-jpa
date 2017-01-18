@@ -1,6 +1,5 @@
-package com.repository;
+package com.domain.biz;
 
-import com.domain.biz.DailyNews;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

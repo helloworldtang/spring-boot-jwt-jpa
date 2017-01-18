@@ -1,6 +1,5 @@
-package com.repository;
+package com.domain.security;
 
-import com.domain.security.SysUserAuthority;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

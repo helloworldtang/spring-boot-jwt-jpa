@@ -1,4 +1,4 @@
-package com.controller.security;
+package com.web.security;
 
 import com.domain.request.JwtAuthenticationReq;
 import com.domain.response.security.JwtAuthenticationRes;

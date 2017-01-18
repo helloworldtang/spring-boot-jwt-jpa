@@ -1,4 +1,4 @@
-package com.controller.news;
+package com.web.news;
 
 import com.domain.ListData;
 import com.domain.request.PageReq;
