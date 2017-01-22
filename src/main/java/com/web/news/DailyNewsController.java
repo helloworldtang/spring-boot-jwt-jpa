@@ -22,4 +22,15 @@ public class DailyNewsController {
         return ResponseEntity.ok(dailyNews);
     }
 
+    /**
+     * In Eclipse, saving a modified file will cause the classpath to be updated and trigger a restart.
+     * In IntelliJ IDEA, building the project (Build → Make Project) will have the same effect.
+     *
+     * @return
+     */
+    @RequestMapping(value = "/testHotSwap", method = RequestMethod.GET)
+    public ResponseEntity<String> testHotSwap() {
+        return ResponseEntity.ok("Success2");
+    }
+
 }
