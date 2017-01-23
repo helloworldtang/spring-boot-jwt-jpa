@@ -3,10 +3,14 @@ spring:
      datasource:
               url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
               username: root
-              password:
+              password: root
      jpa:
        show-sql: true
 
 logging:
   level:
       org.hibernate: info
+
+management:
+  security:
+    enabled: false #actuator rest 不用鉴权
