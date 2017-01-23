@@ -42,7 +42,7 @@ public class Swagger2Configuration {
      * <p>
      * Every Docket bean is picked up by the swagger-mvc framework - allowing for multiple
      * swagger groups i.e. same code base multiple swagger resource listings.
-     * http://springfox.github.io/springfox/docs/current/#introduction
+     * http://springfox.github.io/springfox/docs/current
      */
     @Bean
     public Docket createRestApi() {
