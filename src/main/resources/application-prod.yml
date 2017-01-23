@@ -6,6 +6,9 @@ spring:
               password: root
      jpa:
        show-sql: false
+     h2:
+       console:
+         enabled: false
 
 logging:
   level:
