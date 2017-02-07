@@ -4,4 +4,7 @@
 数据展示接口：  
 127.0.0.1:8080/daily/news?page=0&size=2  
 Header parameter name: token  
-integration swagger2.0  
+integration swagger2.0
+
+profile:dev
+http://localhost/h2
