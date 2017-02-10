@@ -25,7 +25,6 @@ public class DailyNewsService {
     private DailyNewsRepository dailyNewsRepository;
 
     public ListData<DailyNewsRes> getDailyNews(PageReq pageReq) {
-
         Sort sort=new Sort(Sort.Direction.DESC,"createdTime");//properties是table orm后的对象字段名
         PageRequest pageable = new PageRequest(pageReq.getPage(), pageReq.getSize(), sort);
         Page<DailyNews> result = dailyNewsRepository.findByStatus(ItemStatus.NORMAL.getStatus(), pageable);

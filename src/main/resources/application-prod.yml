@@ -13,3 +13,5 @@ spring:
 logging:
   level:
       org.hibernate: warn
+  file: logs/selectdata.log
+
