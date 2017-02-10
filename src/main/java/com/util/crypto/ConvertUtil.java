@@ -1,5 +1,10 @@
 package com.util.crypto;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import java.io.IOException;
+
 /**
  * Created by tangcheng on 2017/2/10.
  */
@@ -44,7 +49,16 @@ public class ConvertUtil {
             bytes[i / 2] = b;
         }
         return bytes;
+    }
 
+    public static String bytes2base64(byte[] bytes) {
+        BASE64Encoder base64Encoder=new BASE64Encoder();
+        return base64Encoder.encode(bytes);
+    }
+
+    public static byte[] base642byte(String base64) throws IOException {
+        BASE64Decoder base64Decoder=new BASE64Decoder();
+        return base64Decoder.decodeBuffer(base64);
     }
 
 

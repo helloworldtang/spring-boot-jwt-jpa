@@ -24,8 +24,14 @@ public class ConvertUtilTest {
     }
 
     @Test
-    public void hex2bytes() throws Exception {
-
+    public void base64CodeTest() throws Exception {
+        String expected = "helloworld";
+        String base64Str = ConvertUtil.bytes2base64(expected.getBytes());
+        System.out.println(base64Str);
+        byte[] afterDecode = ConvertUtil.base642byte(base64Str);
+        String actual = new String(afterDecode);
+        System.out.println(actual);
+        assertTrue(Objects.equals(expected, actual));
     }
 
 }
