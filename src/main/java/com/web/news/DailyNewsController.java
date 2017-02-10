@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping(value = "/v1")
 public class DailyNewsController {
 
     @Autowired
