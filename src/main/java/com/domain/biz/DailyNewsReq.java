@@ -1,15 +1,22 @@
-package com.domain.response;
+package com.domain.biz;
 
-import java.io.Serializable;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 
 /**
- * Created by tang.cheng on 2017/1/14.
+ * Created by tang.cheng on 2017/2/10.
  */
-public class DailyNewsRes implements Serializable{
+public class DailyNewsReq {
+    @NotEmpty
+    @NotNull
     private String title;
+    @NotEmpty
+    @NotNull
     private String mediaUrl;
+    @NotEmpty
+    @NotNull
     private String source;
-    private Long createdTime;
 
     public String getTitle() {
         return title;
@@ -33,13 +40,5 @@ public class DailyNewsRes implements Serializable{
 
     public void setSource(String source) {
         this.source = source;
-    }
-
-    public Long getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(Long createdTime) {
-        this.createdTime = createdTime;
     }
 }
