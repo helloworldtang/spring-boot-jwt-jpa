@@ -79,6 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js"
                 ).permitAll()
                 .antMatchers("/",//一个系统，正常情况下首页都是可以访问的
+                        "/" + authPath,
                         "/sys/auth/init").permitAll()
                 .anyRequest().authenticated();
 
