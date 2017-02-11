@@ -6,10 +6,19 @@ import java.io.Serializable;
  * Created by tang.cheng on 2017/1/14.
  */
 public class DailyNewsRes implements Serializable{
+    private Long id;
     private String title;
     private String mediaUrl;
     private String source;
     private Long createdTime;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
