@@ -4,11 +4,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by tang.cheng on 2017/1/22.
  */
 @Controller
+@ApiIgnore
 public class DefaultController {
     /**
      * In Eclipse, saving a modified file will cause the classpath to be updated and trigger a restart.
