@@ -45,6 +45,7 @@ public class DailyNewsService {
         }
         listData.setInfoList(resList);
         listData.setHasNext(result.hasNext());
+        listData.setCurrentPageId(result.getNumber());
         return listData;
     }
 

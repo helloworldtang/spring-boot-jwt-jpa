@@ -3,17 +3,19 @@ package com.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListData<T> implements Serializable {
-    private Boolean hasNext;
+
+    private boolean hasNext;
 
     @JsonProperty("items")
-    protected List<T> infoList;
+    private List<T> infoList;
+
+    @JsonProperty("current_page_id")
+    private int currentPageId;
 
     public ListData() {
-        this.infoList = new ArrayList<>();
         this.hasNext = false;
     }
 
@@ -28,16 +30,19 @@ public class ListData<T> implements Serializable {
         this.infoList = infoList;
     }
 
-    public Boolean getHasNext() {
+    public boolean isHasNext() {
         return hasNext;
     }
 
-    public void setHasNext(Boolean hasNext) {
+    public void setHasNext(boolean hasNext) {
         this.hasNext = hasNext;
     }
 
-    public void addAll(List<T> list) {
-        this.infoList.addAll(list);
+    public int getCurrentPageId() {
+        return currentPageId;
     }
 
+    public void setCurrentPageId(int currentPageId) {
+        this.currentPageId = currentPageId;
+    }
 }
