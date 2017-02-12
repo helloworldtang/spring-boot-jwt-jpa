@@ -20,7 +20,7 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Created by tang.cheng on 2017/1/16.
  */
-@Profile("dev")
+@Profile("swagger")
 @Configuration
 @EnableSwagger2
 public class Swagger2Configuration {
