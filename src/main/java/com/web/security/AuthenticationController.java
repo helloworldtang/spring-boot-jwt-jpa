@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,9 +32,6 @@ import javax.validation.Valid;
 public class AuthenticationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
-
-    @Value("${jwt.header}")
-    private String tokenHeader;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -67,7 +65,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<JwtAuthenticationRes> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-        String token = request.getHeader(tokenHeader);
+        String token = request.getHeader(HttpHeaders.AUTHORIZATION);
         String username = jwtTokenUtil.getUsernameFromToken(token);
         JwtSysUser user = (JwtSysUser) userDetailsService.loadUserByUsername(username);
 

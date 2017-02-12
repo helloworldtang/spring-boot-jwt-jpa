@@ -1,6 +1,5 @@
 
 jwt:
-  header: Authorization
   secret: selectData
   expiration: 604800
   route:
