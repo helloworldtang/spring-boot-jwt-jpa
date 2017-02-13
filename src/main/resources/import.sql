@@ -30,13 +30,11 @@ CREATE TABLE `tb_sys_user_authority` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO tb_sys_user_authority (SYS_USER_ID, SYS_AUTHORITY_ID) VALUES (1, 1);
 
-drop TABLE if EXISTS tb_category;
-CREATE TABLE `tb_category` (
+drop TABLE if EXISTS tb_daily_category;
+CREATE TABLE `tb_daily_category` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `categoryId` smallint(1) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `media_url` varchar(100) NOT NULL,
-  `source` varchar(50) NOT NULL,
   `status` smallint(1) DEFAULT '0' COMMENT '0. normal 1. deleted',
   `created_time` datetime DEFAULT NULL,
   `updated_time` datetime DEFAULT NULL,
@@ -48,7 +46,7 @@ CREATE TABLE `tb_category` (
 drop TABLE if EXISTS tb_daily_news;
 CREATE TABLE `tb_daily_news` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `categoryId` smallint(1) DEFAULT NULL,
+  `category_id` smallint(1) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `media_url` varchar(100) NOT NULL,
   `source` varchar(50) NOT NULL,

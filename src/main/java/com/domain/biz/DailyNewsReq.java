@@ -18,6 +18,9 @@ public class DailyNewsReq {
     @NotNull
     private String source;
 
+    @NotNull
+    private Long categoryId;
+
     public String getTitle() {
         return title;
     }
@@ -40,5 +43,13 @@ public class DailyNewsReq {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

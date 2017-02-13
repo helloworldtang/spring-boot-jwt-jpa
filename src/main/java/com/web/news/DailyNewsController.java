@@ -1,6 +1,7 @@
 package com.web.news;
 
 import com.domain.ListData;
+import com.domain.biz.DailyNewsQueryReq;
 import com.domain.biz.DailyNewsReq;
 import com.domain.biz.DailyNewsUpdateReq;
 import com.domain.request.PageReq;
@@ -26,6 +27,12 @@ public class DailyNewsController {
     @RequestMapping(value = "/daily/news", method = RequestMethod.GET)
     public ResponseEntity<ListData<DailyNewsRes>> getDailyNews(PageReq pageReq) {
         ListData<DailyNewsRes> dailyNews = dailyNewsService.getDailyNews(pageReq);
+        return ResponseEntity.ok(dailyNews);
+    }
+
+    @RequestMapping(value = "/daily/news/{categoryId}", method = RequestMethod.GET)
+    public ResponseEntity<ListData<DailyNewsRes>> getDailyNews(DailyNewsQueryReq queryReq) {
+        ListData<DailyNewsRes> dailyNews = dailyNewsService.getDailyNews(queryReq);
         return ResponseEntity.ok(dailyNews);
     }
 

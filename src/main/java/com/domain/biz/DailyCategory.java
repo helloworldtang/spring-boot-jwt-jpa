@@ -4,34 +4,21 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by tang.cheng on 2017/1/14.
+ * Created by tangcheng on 2017/2/13.
  */
 @Entity
-@Table(name = "tb_daily_news")
-public class DailyNews {
+@Table(name = "tb_daily_category")
+public class DailyCategory {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "category_id")
-    private Long categoryId;
-
-    @Column(name = "title")
     private String title;
-
     @Column(name = "media_url")
     private String mediaUrl;
-
-    @Column(name = "source")
-    private String source;
-
-    @Column(name = "status")
     private Byte status;
-
     @Column(name = "created_time")
     private Date createdTime;
-
     @Column(name = "updated_time")
     private Date updatedTime;
 
@@ -51,28 +38,12 @@ public class DailyNews {
         this.title = title;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getMediaUrl() {
         return mediaUrl;
     }
 
     public void setMediaUrl(String mediaUrl) {
         this.mediaUrl = mediaUrl;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     public Byte getStatus() {
