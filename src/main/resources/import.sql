@@ -30,10 +30,10 @@ CREATE TABLE `tb_sys_user_authority` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 INSERT INTO tb_sys_user_authority (SYS_USER_ID, SYS_AUTHORITY_ID) VALUES (1, 1);
 
-
-drop TABLE if EXISTS tb_daily_news;
-create table tb_daily_news(
+drop TABLE if EXISTS tb_category;
+CREATE TABLE `tb_category` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `categoryId` smallint(1) DEFAULT NULL,
   `title` varchar(50) NOT NULL,
   `media_url` varchar(100) NOT NULL,
   `source` varchar(50) NOT NULL,
@@ -41,7 +41,24 @@ create table tb_daily_news(
   `created_time` datetime DEFAULT NULL,
   `updated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+drop TABLE if EXISTS tb_daily_news;
+CREATE TABLE `tb_daily_news` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `categoryId` smallint(1) DEFAULT NULL,
+  `title` varchar(50) NOT NULL,
+  `media_url` varchar(100) NOT NULL,
+  `source` varchar(50) NOT NULL,
+  `status` smallint(1) DEFAULT '0' COMMENT '0. normal 1. deleted',
+  `created_time` datetime DEFAULT NULL,
+  `updated_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- ALTER TABLE `tb_daily_news`
+-- ADD COLUMN `categoryId`  smallint(1) NULL AFTER `id`;
 INSERT INTO `tb_daily_news` (`id`, `title`, `media_url`, `source`, `status`, `created_time`, `updated_time`) VALUES ('1', '揭秘比特币和区块链（五）：深入理解比特币交易的脚本', 'http://www.infoq.com/cn/articles/deep-understanding-of-bitcoin-transaction-script', 'InfoQ', '0', '2017-01-15 19:08:41', '2017-01-15 19:08:41');
 INSERT INTO `tb_daily_news` (`id`, `title`, `media_url`, `source`, `status`, `created_time`, `updated_time`) VALUES ('2', '阿里云、Amazon、Google云数据库方案架构与技术分析', 'http://www.infoq.com/cn/articles/cloud-database-schema-and-technical-analysis', 'InfoQ', '0', '2017-01-15 19:10:41', '2017-01-15 19:10:41');
 INSERT INTO `tb_daily_news` (`id`, `title`, `media_url`, `source`, `status`, `created_time`, `updated_time`) VALUES ('3', '大数据挖掘更多时间都在于清洗数据', 'http://www.infoq.com/cn/articles/more-time-of-big-data-mining-is-used-to-clean-the-data', 'InfoQ', '0', '2017-01-15 19:15:41', '2017-01-15 19:15:41');
