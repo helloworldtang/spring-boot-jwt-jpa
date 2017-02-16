@@ -3,9 +3,15 @@ spring:
      datasource:
               url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
               username: root
-              password: root
+              password:
+#让hibernate格式化该sql并在该sql字符串中生成注释，说明生成hibernate执行该sql的原因
+#将org.hibernate.SQL 和org.hibernate.type.descriptor.sql.BasicBinder类别设置为最佳调试级别
      jpa:
        show-sql: true
+       properties:
+          hibernate:
+              format_sql: true
+              use_sql_comments: true
      h2:
        console:
          enabled: true
