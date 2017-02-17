@@ -23,7 +23,7 @@ import static com.google.common.collect.Lists.newArrayList;
 @Profile("swagger")
 @Configuration
 @EnableSwagger2
-public class Swagger2Configuration {
+public class Swagger2Config {
 
     /**
      * ApiImplicitParam 与 ApiParam 的区别
