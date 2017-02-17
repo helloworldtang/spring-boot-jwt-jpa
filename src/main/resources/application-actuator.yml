@@ -1,0 +1,5 @@
+# curl -X post http://localhost/shutdown  return  "message": "Shutting down, bye..."
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false

@@ -47,7 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //allow Swagger URL to be accessed without authentication
-        web.ignoring().antMatchers("/v2/api-docs",//swagger api json
+        web.ignoring().antMatchers( //"/v2/api-docs",//change to /swagger and custom the groupName
+                "/swagger",// Resolve conflicts version number
                 "/swagger-resources/configuration/ui",//用来获取支持的动作
                 "/swagger-resources",//用来获取api-docs的URI
                 "/swagger-resources/configuration/security",//安全选项
