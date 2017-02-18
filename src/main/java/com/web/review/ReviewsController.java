@@ -5,6 +5,7 @@ import com.domain.biz.ReviewsRes;
 import com.service.ReviewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,7 @@ public class ReviewsController {
         return ResponseEntity.ok(versions);
     }
 
+    @Transactional
     @RequestMapping(value = "getReviews", method = RequestMethod.GET)
     public ResponseEntity<List<ReviewsRes>> getReviews(@ModelAttribute @Valid ReviewsReq vo) {
         List<ReviewsRes> resList = reviewsService.getReviews(vo);
