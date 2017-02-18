@@ -18,12 +18,13 @@ spring:
            username: root
            password: root
            pool-name: hikari-pool
-           maximum-pool-size: 5
-           minimum-idle: 2
+           maximum-pool-size: 3
+           minimum-idle: 1
            leak-detection-threshold: 60000 # one minute
 logging:
   level:
       org.hibernate: info
+      com.zaxxer.hikari: debug
   file: logs/selectdata-dev.log
 
 management:
