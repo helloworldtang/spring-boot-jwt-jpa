@@ -15,6 +15,6 @@ server:
   port: 80
 spring:
   profiles:
-      active: dev,swagger,actuator
+      active: @activatedProperties@,swagger,actuator
 
 

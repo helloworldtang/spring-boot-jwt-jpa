@@ -1,0 +1,35 @@
+
+spring:
+     jpa:
+       show-sql: true
+       properties:
+          hibernate:
+              format_sql: true
+              use_sql_comments: true
+     h2:
+       console:
+         enabled: true
+         path: /h2  # default /h2-console
+     datasource:
+         type: com.zaxxer.hikari.HikariDataSource
+         hikari: #https://github.com/brettwooldridge/HikariCP
+           driver-class-name: com.mysql.jdbc.Driver
+           jdbcUrl: jdbc:mysql://127.0.0.1:3306/select-data?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+           username: root
+           password:
+           pool-name: hikari-pool
+           maximum-pool-size: 3
+           minimum-idle: 1
+           leak-detection-threshold: 60000 # one minute
+logging:
+  level:
+      org.hibernate: info
+      com.zaxxer.hikari: debug
+  file: logs/selectdata-test.log
+
+management:
+  security:
+  #actuator rest 不用鉴权
+    enabled: false
+server:
+  port: 9091
