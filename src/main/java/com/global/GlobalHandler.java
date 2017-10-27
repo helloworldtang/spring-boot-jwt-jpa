@@ -31,6 +31,17 @@ import java.util.Set;
 public class GlobalHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalHandler.class);
 
+
+    /**
+     * 500 - Internal Server Error
+     */
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity handleException(Exception e) {
+        LOGGER.error("通用异常", e);
+        return ResponseEntity.badRequest().body("通用异常：" + e.getMessage());
+    }
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
@@ -147,7 +158,7 @@ public class GlobalHandler {
      */
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity handleHttpMediaTypeNotSupportedException(Exception e) {
+    public ResponseEntity handleHttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException e) {
         LOGGER.error("不支持当前媒体类型", e);
         return ResponseEntity.badRequest().body("content_type_not_supported");
     }
@@ -162,15 +173,6 @@ public class GlobalHandler {
         return ResponseEntity.badRequest().body("业务逻辑异常：" + e.getMessage());
     }
 
-    /**
-     * 500 - Internal Server Error
-     */
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity handleException(Exception e) {
-        LOGGER.error("通用异常", e);
-        return ResponseEntity.badRequest().body("通用异常：" + e.getMessage());
-    }
 
     /**
      * 操作数据库出现异常:名称重复，外键关联
