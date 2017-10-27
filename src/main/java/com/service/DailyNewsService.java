@@ -17,7 +17,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by tang.cheng on 2017/1/14.
+ *
+ * @author tang.cheng
+ * @date 2017/1/14
  */
 @Service
 public class DailyNewsService {

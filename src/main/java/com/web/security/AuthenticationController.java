@@ -57,10 +57,9 @@ public class AuthenticationController {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
         LOGGER.info("authenticated user {}, setting security context", username);
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // Reload password post-security so we can generate token
-        final String token = jwtTokenUtil.generateToken(username);
+        String token = jwtTokenUtil.generateToken(username);
         LOGGER.info("username:{},token:{}", username, token);
         // Return the token
         return ResponseEntity.ok(new TokenRes(token));

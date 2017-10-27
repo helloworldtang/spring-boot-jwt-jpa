@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 /**
- * Created by tangcheng on 2017/2/13.
+ *
+ * @author tangcheng
+ * @date 2017/2/13
  */
 @Service
 public class DailyCategoryService {
