@@ -21,6 +21,7 @@ import java.util.List;
  */
 @Api(tags = "Review manage", description = "review manager")
 @RestController
+@RequestMapping("/v1")
 public class ReviewsController {
 
     @Autowired
