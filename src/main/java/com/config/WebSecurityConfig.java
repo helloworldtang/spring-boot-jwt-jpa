@@ -65,12 +65,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.headers().defaultsDisabled().cacheControl();//加入Cache相关HTTP头，禁用浏览器缓存
+        httpSecurity.formLogin().disable();//禁用org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+        httpSecurity.httpBasic().disable();//禁用org.springframework.security.web.authentication.www.BasicAuthenticationFilter
         httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
-                // don't create session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // don't create session
+
+        httpSecurity.authorizeRequests()
                 // allow anonymous resource requests
                 .antMatchers(
 //                        HttpMethod.GET,
@@ -91,9 +93,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * 最后再将请求传递给下一个过滤器
          */
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-        // disable page caching
-        httpSecurity.headers().cacheControl();
-
         // custom JSON based authentication by POST of {"username":"<name>","password":"<password>"} which sets the token header upon authentication
 //        httpSecurity.addFilterBefore(loginFilter(), UsernamePasswordAuthenticationFilter.class);
 
