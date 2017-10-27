@@ -31,15 +31,17 @@ import java.util.Set;
 public class GlobalHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalHandler.class);
 
-
     /**
      * 500 - Internal Server Error
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ResponseEntity handleException(Exception e) {
-        LOGGER.error("通用异常", e);
-        return ResponseEntity.badRequest().body("通用异常：" + e.getMessage());
+    public ResponseEntity<?> exceptionHandler(Exception e) {
+        LOGGER.error(e.getMessage(), e);
+        if (e instanceof SQLException | e instanceof DataAccessException) {
+            return ResponseEntity.badRequest().body("The server is off.Please contact the developer");
+        }
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -49,15 +51,10 @@ public class GlobalHandler {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> exceptionHandler(Throwable e) {
-        LOGGER.error(e.getMessage(), e);
-        if (e instanceof SQLException | e instanceof DataAccessException) {
-            return ResponseEntity.badRequest().body("The server is off.Please contact the developer");
-        }
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
+    /**
+     * 400 - Bad Request
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BindException.class)
     public ResponseEntity handleBindException(HttpServletRequest request, BindException e) {
         StringBuilder result = new StringBuilder();
@@ -105,20 +102,6 @@ public class GlobalHandler {
         return ResponseEntity.badRequest().body(message);
     }
 
-    /**
-     * 400 - Bad Request
-     */
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(BindException.class)
-    public ResponseEntity handleBindException(BindException e) {
-        LOGGER.error("参数绑定失败", e);
-        BindingResult result = e.getBindingResult();
-        FieldError error = result.getFieldError();
-        String field = error.getField();
-        String code = error.getDefaultMessage();
-        String message = String.format("%s:%s", field, code);
-        return ResponseEntity.badRequest().body(message);
-    }
 
     /**
      * 400 - Bad Request
