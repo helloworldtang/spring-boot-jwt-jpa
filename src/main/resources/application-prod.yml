@@ -1,7 +1,7 @@
 
 spring:
      datasource:
-              url: jdbc:mysql://127.0.0.1:3306/daily?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+              url: jdbc:mysql://127.0.0.1:3306/test?autoReconnect=true&useCompression=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
               username: root
               password:
      jpa:
@@ -13,5 +13,5 @@ spring:
 logging:
   level:
       org.hibernate: info
-  file: logs/selectdata.log
+  file: logs/jwt-jpa-prod.log
 

@@ -25,7 +25,7 @@ logging:
   level:
       org.hibernate: info
       com.zaxxer.hikari: debug
-  file: logs/selectdata-dev.log
+  file: logs/jwt-jpa-dev.log
 
 management:
   security:

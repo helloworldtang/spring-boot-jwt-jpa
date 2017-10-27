@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SelectDataApplication {
+public class JwtJpaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SelectDataApplication.class, args);
+		SpringApplication.run(JwtJpaApplication.class, args);
 	}
 }
