@@ -6,6 +6,7 @@ import com.domain.security.SysRole;
 import com.service.security.UserManagerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,12 +18,13 @@ import javax.validation.Valid;
  * Created by tang.cheng on 2017/1/16.
  */
 
-@Api(description = "User Manager")
+@Api(description = "User Manager", tags = "user manager")
 @RestController
 public class UserController {
     @Autowired
     private UserManagerService userManagerService;
 
+    @ApiOperation("init user manager system")
     @RequestMapping(value = "/sys/auth/init", method = RequestMethod.POST)
     public ResponseEntity<String> init(@Valid @ModelAttribute UserReq req) {
         if (userManagerService.hasAdminAccount()) {
@@ -33,6 +35,7 @@ public class UserController {
     }
 
 
+    @ApiOperation("add user")
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ApiImplicitParam(name = "测试字段不用填", value = "username value", defaultValue = "admin", required = true, paramType = "query", example = "eg")
@@ -41,6 +44,7 @@ public class UserController {
         return ResponseEntity.ok("success");
     }
 
+    @ApiOperation("modify user info")
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public ResponseEntity<String> managerUser(@RequestParam(name = "username") String username, @RequestParam("status") Boolean status) {

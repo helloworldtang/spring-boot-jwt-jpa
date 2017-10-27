@@ -4,6 +4,7 @@ import com.domain.request.JwtAuthenticationReq;
 import com.domain.response.TokenRes;
 import com.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-@Api(description = "Authentication")
+/**
+ * @author tangcheng
+ */
+@Api(tags = "Authentication", description = "authentication")
 @RestController
 public class AuthenticationController {
 
@@ -40,6 +44,7 @@ public class AuthenticationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @ApiOperation("get token")
     @RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
     public ResponseEntity<TokenRes> createAuthenticationToken(@Valid @ModelAttribute JwtAuthenticationReq authenticationRequest, HttpServletRequest httpServletRequest) throws AuthenticationException {
 
@@ -65,6 +70,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(new TokenRes(token));
     }
 
+    @ApiOperation("refresh token")
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<TokenRes> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
