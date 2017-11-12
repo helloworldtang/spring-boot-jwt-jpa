@@ -48,7 +48,6 @@ public class UserController {
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     public ResponseEntity<String> managerUser(@RequestParam(name = "username") String username, @RequestParam("status") Boolean status) {
-        //todo 此处的用户名，token中已经存在，可以去掉
         userManagerService.manager(username, status);
         return ResponseEntity.ok("success");
     }
